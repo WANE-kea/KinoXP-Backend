@@ -26,7 +26,7 @@ public class Customer {
     private String middleName;
     private String lastName;
     private String email;
-    private String streetAdress;
+    private String streetAddress;
     private String streetNo;
     private String zip;
     private String country;
