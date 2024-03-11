@@ -13,6 +13,7 @@ import lombok.Setter;
 @Table(name = "seats")
 public class Seat {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int row;
     private int seatNr;

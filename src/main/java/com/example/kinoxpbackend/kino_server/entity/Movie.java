@@ -14,6 +14,7 @@ import java.util.List;
 @Table(name = "movies")
 public class Movie {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
     private String description;

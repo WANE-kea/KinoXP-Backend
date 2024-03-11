@@ -15,6 +15,7 @@ import java.util.List;
 @Table(name = "bookings")
 public class Booking {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int customerId;
     private int showId;

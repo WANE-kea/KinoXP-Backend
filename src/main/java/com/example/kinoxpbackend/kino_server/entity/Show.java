@@ -1,9 +1,7 @@
 package com.example.kinoxpbackend.kino_server.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +15,7 @@ import java.util.Date;
 @Table(name = "shows")
 public class Show {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int movieId;
     private int theaterId;
