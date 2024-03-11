@@ -12,7 +12,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-
 @Table(name = "bookings")
 public class Booking {
     @Id
