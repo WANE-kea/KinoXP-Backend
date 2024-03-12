@@ -18,9 +18,9 @@ public class TheaterService {
     public TheaterService(TheaterRepository theaterRepository) {
         this.theaterRepository = theaterRepository;
     }
-    public List<String> getAllTheaters() {
+    public List<TheaterDto> getAllTheaters() {
         List<Theater> theaters = theaterRepository.findAll();
-        return theaters.stream().map((c)->new String(c.getName())).toList();
+        return theaters.stream().map((t)->new TheaterDto(t)).toList();
     }
 
     public TheaterDto getTheaterById(int idInt) {

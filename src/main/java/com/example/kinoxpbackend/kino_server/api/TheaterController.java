@@ -18,7 +18,7 @@ public class TheaterController {
     }
 
     @GetMapping
-    public List<String> getAllTheaters(@RequestParam(required = false) String theater) {
+    public List<TheaterDto> getAllTheaters(@RequestParam(required = false) String theater) {
         if(theater != null) {
             System.out.println("Theater: " + theater);
         }

@@ -17,9 +17,9 @@ public class CategoryService {
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
-    public List<String> getAllCategories() {
-        List<Category> theaters = categoryRepository.findAll();
-        return theaters.stream().map((c)->new String(c.getName())).toList();
+    public List<CategoryDto> getAllCategories() {
+        List<Category> categories = categoryRepository.findAll();
+        return categories.stream().map((c)->new CategoryDto(c)).toList();
     }
 
     public CategoryDto getCategoryById(int idInt) {

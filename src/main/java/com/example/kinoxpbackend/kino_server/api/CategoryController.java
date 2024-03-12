@@ -18,7 +18,7 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<String> getAllCategories(@RequestParam(required = false) String category) {
+    public List<CategoryDto> getAllCategories(@RequestParam(required = false) String category) {
         if(category != null) {
             System.out.println("Category: " + category);
         }
