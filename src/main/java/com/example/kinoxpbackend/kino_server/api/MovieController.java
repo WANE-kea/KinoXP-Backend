@@ -20,7 +20,7 @@ public class MovieController {
     }
 
     @GetMapping
-    public List<String> getAllMovies(@RequestParam(required = false) String movie) {
+    public List<MovieDto> getAllMovies(@RequestParam(required = false) String movie) {
         if(movie != null) {
             System.out.println("Movie: " + movie);
         }

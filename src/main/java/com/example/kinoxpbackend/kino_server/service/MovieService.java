@@ -18,9 +18,9 @@ public class MovieService {
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
-    public List<String> getAllMovies() {
+    public List<MovieDto> getAllMovies() {
         List<Movie> movies = movieRepository.findAll();
-        return movies.stream().map((c)->new String(c.getTitle())).toList();
+        return movies.stream().map((c)->new MovieDto(c)).toList();
     }
 
     public MovieDto getMovieById(int idInt) {
