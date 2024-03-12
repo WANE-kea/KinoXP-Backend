@@ -1,7 +1,9 @@
 package com.example.kinoxpbackend.kino_server.dto;
 
 import com.example.kinoxpbackend.kino_server.entity.Booking;
+import com.example.kinoxpbackend.kino_server.entity.Customer;
 import com.example.kinoxpbackend.kino_server.entity.Seat;
+import com.example.kinoxpbackend.kino_server.entity.Show;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,14 +19,14 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookingDto{
     private UUID id;
-    private int customerId;
-    private int showId;
+    private Customer customer;
+    private Show show;
     private List<Seat> seats;
 
     public BookingDto(Booking b) {
         this.id = b.getId();
-        this.customerId = b.getCustomerId();
-        this.showId = b.getShowId();
+        this.customer = b.getCustomer();
+        this.show = b.getShow();
         this.seats = b.getSeats();
     }
 }
