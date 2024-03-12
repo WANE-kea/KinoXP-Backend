@@ -1,6 +1,5 @@
 package com.example.kinoxpbackend.kino_server.service;
 
-
 import com.example.kinoxpbackend.kino_server.dto.TheaterDto;
 import com.example.kinoxpbackend.kino_server.entity.Category;
 import com.example.kinoxpbackend.kino_server.entity.Theater;
@@ -9,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 
 @Service
@@ -50,19 +48,16 @@ public class TheaterService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot change the id of an existing recipe");
         }
 
-
         Theater theaterToEdit = theaterRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Theater not found"));
         updateTheater(theaterToEdit,request);
         theaterRepository.save(theaterToEdit);
-        return new TheaterDto(theaterToEdit); // skal have fixet false her på et tidspunkt
+        return new TheaterDto(theaterToEdit); // Skal have fixet false her på et tidspunkt
     }
-
 
     public ResponseEntity deleteTheater(int id) {
         Theater theater = theaterRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Theater not found"));
         theaterRepository.delete(theater);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
-
 }

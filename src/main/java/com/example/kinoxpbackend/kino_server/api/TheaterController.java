@@ -1,12 +1,10 @@
 package com.example.kinoxpbackend.kino_server.api;
 
-
 import com.example.kinoxpbackend.kino_server.dto.TheaterDto;
 import com.example.kinoxpbackend.kino_server.service.TheaterService;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -26,8 +24,8 @@ public class TheaterController {
         }
         return theaterService.getAllTheaters();
     }
-    //@PreAuthorize("hasAuthority('ADMIN')")
 
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(path ="/{id}")
     public TheaterDto getTheaterById(@PathVariable int id) {
         return theaterService.getTheaterById(id);
@@ -50,5 +48,4 @@ public class TheaterController {
     public ResponseEntity deleteTheater(@PathVariable int id) {
         return theaterService.deleteTheater(id);
     }
-
 }
