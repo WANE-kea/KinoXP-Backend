@@ -18,8 +18,9 @@ public class Seat {
     private int row;
     private int seatNr;
     private boolean available;
-    private int theaterId;
-    private enum seatType {
+    @ManyToOne
+    private Theater theater;
+    public enum seatType {
         REGULAR,
         VIP,
         HANDICAP

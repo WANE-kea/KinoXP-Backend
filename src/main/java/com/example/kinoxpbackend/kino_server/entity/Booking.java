@@ -18,18 +18,10 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private int customerId;
-    private int showId;
-
-    @JoinTable(
-            name = "seat_booking",
-            joinColumns = @JoinColumn(
-                    name = "seat_id"
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "booking"
-            )
-    )
+    @ManyToOne
+    private Customer customer;
+    @ManyToOne
+    private Show show;
     @OneToMany
     private List<Seat> seats;
 
