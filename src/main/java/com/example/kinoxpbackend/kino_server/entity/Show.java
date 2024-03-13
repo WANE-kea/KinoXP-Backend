@@ -18,8 +18,10 @@ public class Show {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int movieId;
-    private int theaterId;
     private Date startTime;
     private Date endTime;
+    @ManyToOne
+    private Movie movie;
+    @ManyToOne
+    private Theater theater;
 }
