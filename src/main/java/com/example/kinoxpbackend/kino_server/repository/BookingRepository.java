@@ -8,5 +8,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface BookingRepository extends JpaRepository<Booking, Integer>{
-    Optional<Booking> findById(UUID bookingNr);
+    Optional<Booking> findById(String bookingNr);
 }

@@ -17,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookingDto{
-    private UUID id;
+    private String id;
     private Customer customer;
     private Show show;
     private List<Seat> seats;
