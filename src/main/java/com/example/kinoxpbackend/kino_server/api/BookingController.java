@@ -25,7 +25,7 @@ public class BookingController {
     }
 
     @GetMapping(path ="/{bookingNr}")
-    public BookingDto getBookingByBookingNr(@PathVariable UUID bookingNr) {
+    public BookingDto getBookingByBookingNr(@PathVariable String bookingNr) {
         return bookingService.getBookingById(bookingNr);
     }
 
@@ -37,7 +37,7 @@ public class BookingController {
 
    // @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PutMapping(path = "/{id}")
-    public BookingDto editBooking(@RequestBody BookingDto request,@PathVariable UUID id) {
+    public BookingDto editBooking(@RequestBody BookingDto request,@PathVariable String id) {
         return bookingService.editBooking(request,id);
     }
   //  @PreAuthorize("hasAnyAuthority('ADMIN')")
