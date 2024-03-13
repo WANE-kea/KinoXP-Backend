@@ -14,7 +14,7 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SeatDto {
     private Integer id;
-    private int row;
+    private int seatRow;
     private int seatNr;
     private boolean available;
     private Theater theater;
@@ -22,7 +22,7 @@ public class SeatDto {
 
     public SeatDto(Seat seat) {
         this.id = seat.getId();
-        this.row = seat.getRow();
+        this.seatRow = seat.getSeatRow();
         this.seatNr = seat.getSeatNr();
         this.available = seat.isAvailable();
         this.theater = seat.getTheater();

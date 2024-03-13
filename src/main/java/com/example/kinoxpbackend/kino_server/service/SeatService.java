@@ -56,7 +56,7 @@ public class SeatService {
 
     private void updateSeat(Seat original, SeatDto s) {
         original.setSeatNr(s.getSeatNr());
-        original.setRow(s.getRow());
+        original.setSeatRow(s.getSeatRow());
         original.setAvailable(s.isAvailable());
         original.setTheater(s.getTheater());
         original.setType(s.getType());
