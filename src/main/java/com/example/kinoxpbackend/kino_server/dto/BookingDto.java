@@ -1,15 +1,14 @@
 package com.example.kinoxpbackend.kino_server.dto;
 
 import com.example.kinoxpbackend.kino_server.entity.Booking;
-import com.example.kinoxpbackend.kino_server.entity.Customer;
 import com.example.kinoxpbackend.kino_server.entity.Seat;
 import com.example.kinoxpbackend.kino_server.entity.Show;
+import com.example.kinoxpbackend.security.entity.Customer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 

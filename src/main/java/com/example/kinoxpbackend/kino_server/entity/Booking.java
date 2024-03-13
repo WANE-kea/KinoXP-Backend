@@ -1,6 +1,7 @@
 package com.example.kinoxpbackend.kino_server.entity;
 
 
+import com.example.kinoxpbackend.security.entity.Customer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
