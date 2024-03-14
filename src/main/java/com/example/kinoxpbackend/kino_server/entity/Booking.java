@@ -28,6 +28,7 @@ public class Booking {
     @JsonBackReference
     private Show show;
     @ManyToMany(mappedBy = "bookings")
+    @JsonBackReference
     private List<Seat> seats;
 
 }
