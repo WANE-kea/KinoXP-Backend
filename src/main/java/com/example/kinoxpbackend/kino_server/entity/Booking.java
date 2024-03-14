@@ -19,10 +19,12 @@ public class Booking {
     @Id
     private String id;
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
     @ManyToOne
+    @JoinColumn(name = "show_id")
     private Show show;
-    @OneToMany
+    @ManyToMany(mappedBy = "bookings")
     private List<Seat> seats;
 
 }

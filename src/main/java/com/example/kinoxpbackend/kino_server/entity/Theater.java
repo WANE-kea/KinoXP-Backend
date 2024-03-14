@@ -21,9 +21,9 @@ public class Theater {
     @Column(unique = true)
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "theater")
     private List<Seat> seats;
 
-    @OneToMany
+    @OneToMany(mappedBy = "theater")
     private List<Show> shows;
 }

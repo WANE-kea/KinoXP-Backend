@@ -18,6 +18,6 @@ public class Category {
     private int id;
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany
     private List<Movie> movies;
 }

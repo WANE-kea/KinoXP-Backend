@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,6 +21,7 @@ public class Seat {
     private int seatNr;
     private boolean available;
     @ManyToOne
+    @JoinColumn(name = "theater_id")
     private Theater theater;
     public enum seatType {
         REGULAR,
@@ -26,4 +29,6 @@ public class Seat {
         HANDICAP
     }
     private seatType type;
+    @ManyToMany
+    private List<Booking> bookings;
 }

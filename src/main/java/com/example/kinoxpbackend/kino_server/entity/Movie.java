@@ -23,6 +23,6 @@ public class Movie {
     private String trailerUrl;
     private int ageLimit;
     private int duration;
-    @ManyToMany
+    @ManyToMany(mappedBy = "movies")
     private List<Category> categories;
 }
