@@ -17,7 +17,7 @@ public class SeatDto {
     private int seatRow;
     private int seatNr;
     private boolean available;
-    private Theater theater;
+    private int theater_id;
     private Seat.seatType type;
 
     public SeatDto(Seat seat) {
@@ -25,7 +25,7 @@ public class SeatDto {
         this.seatRow = seat.getSeatRow();
         this.seatNr = seat.getSeatNr();
         this.available = seat.isAvailable();
-        this.theater = seat.getTheater();
+        this.theater_id = seat.getTheater().getId();
         this.type = seat.getType();
     }
 
