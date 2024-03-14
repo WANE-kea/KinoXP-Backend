@@ -2,6 +2,7 @@ package com.example.kinoxpbackend.kino_server.entity;
 
 
 import com.example.kinoxpbackend.security.entity.Customer;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,14 @@ public class Booking {
     private String id;
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonBackReference
     private Customer customer;
     @ManyToOne
     @JoinColumn(name = "show_id")
+    @JsonBackReference
     private Show show;
     @ManyToMany(mappedBy = "bookings")
+    @JsonBackReference
     private List<Seat> seats;
 
 }

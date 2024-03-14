@@ -1,6 +1,7 @@
 package com.example.kinoxpbackend.kino_server.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,8 +23,10 @@ public class Theater {
     private String name;
 
     @OneToMany(mappedBy = "theater")
+    @JsonManagedReference
     private List<Seat> seats;
 
     @OneToMany(mappedBy = "theater")
+    @JsonManagedReference
     private List<Show> shows;
 }

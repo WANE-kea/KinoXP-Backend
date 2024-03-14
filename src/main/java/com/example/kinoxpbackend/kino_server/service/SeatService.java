@@ -3,6 +3,7 @@ package com.example.kinoxpbackend.kino_server.service;
 import com.example.kinoxpbackend.kino_server.dto.BookingDto;
 import com.example.kinoxpbackend.kino_server.dto.SeatDto;
 import com.example.kinoxpbackend.kino_server.entity.Seat;
+import com.example.kinoxpbackend.kino_server.entity.Theater;
 import com.example.kinoxpbackend.kino_server.repository.BookingRepository;
 import com.example.kinoxpbackend.kino_server.repository.SeatRepository;
 import com.example.kinoxpbackend.kino_server.repository.TheaterRepository;
@@ -49,16 +50,18 @@ public class SeatService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot provide the id for a new seat!");
         }
         Seat newSeat = new Seat();
-        updateSeat(newSeat, request);
+        Theater theater = theaterRepository.findById(request.getTheater_id()).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Theater not found"));
+        updateSeat(newSeat, request, theater);
         seatRepository.save(newSeat);
         return new SeatDto(newSeat);
     }
 
-    private void updateSeat(Seat original, SeatDto s) {
+    private void updateSeat(Seat original, SeatDto s, Theater theater) {
         original.setSeatNr(s.getSeatNr());
         original.setSeatRow(s.getSeatRow());
         original.setAvailable(s.isAvailable());
-        original.setTheater(s.getTheater());
+        original.setTheater(theater);
         original.setType(s.getType());
     }
 
@@ -68,7 +71,9 @@ public class SeatService {
         }
         Seat seatToEdit = seatRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found"));
-        updateSeat(seatToEdit,request);
+        Theater theater = theaterRepository.findById(request.getTheater_id()).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Theater not found"));
+        updateSeat(seatToEdit,request,theater);
         seatRepository.save(seatToEdit);
         return new SeatDto(seatToEdit);
     }

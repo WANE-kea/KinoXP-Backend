@@ -1,6 +1,8 @@
 package com.example.kinoxpbackend.kino_server.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,7 @@ public class Seat {
     private boolean available;
     @ManyToOne
     @JoinColumn(name = "theater_id")
+    @JsonBackReference
     private Theater theater;
     public enum seatType {
         REGULAR,
@@ -30,5 +33,6 @@ public class Seat {
     }
     private seatType type;
     @ManyToMany
+    @JsonManagedReference
     private List<Booking> bookings;
 }
