@@ -1,4 +1,4 @@
-use KinoDatabase;
+use kinodb;
 
 INSERT INTO role(role_name)
 VALUES ('ADMIN');
@@ -55,19 +55,19 @@ VALUES (16, 150, 2, 'A gripping drama', 'base64encodedimage2', 'https://example.
 INSERT INTO movies (age_limit, duration, id, description, poster_base64, poster_url, title, trailer_url)
 VALUES (18, 180, 3, 'A hilarious comedy', 'base64encodedimage3', 'https://example.com/poster3.jpg', 'Movie 3', 'https://example.com/trailer3.mp4');
 
-INSERT INTO movies_categories (categories_id, movies_id)
+INSERT INTO categories_movies (categories_id, movies_id)
 VALUES (7, 1);
 
-INSERT INTO movies_categories (categories_id, movies_id)
+INSERT INTO categories_movies (categories_id, movies_id)
 VALUES (5, 2);
 
-INSERT INTO movies_categories (categories_id, movies_id)
+INSERT INTO categories_movies (categories_id, movies_id)
 VALUES (2, 3);
 
-INSERT INTO movies_categories (categories_id, movies_id)
+INSERT INTO categories_movies (categories_id, movies_id)
 VALUES (3, 1);
 
-INSERT INTO movies_categories (categories_id, movies_id)
+INSERT INTO categories_movies (categories_id, movies_id)
 VALUES (3, 2);
 
 -- Inserting a user with roles
@@ -94,16 +94,16 @@ VALUES (2, 2, 2, '2024-03-14 21:00:00', '2024-03-14 18:30:00');
 INSERT INTO shows (id, movie_id, theater_id, end_time, start_time)
 VALUES (3, 3, 3, '2024-03-15 15:45:00', '2024-03-15 12:30:00');
 
-INSERT INTO bookings (show_id, id, customer_username)
+INSERT INTO bookings (show_id, id, customer_id)
 VALUES (3,'00000000-0000-3100-0000-000000000000', 'user1@example.com');
 
-INSERT INTO bookings (show_id, id, customer_username)
+INSERT INTO bookings (show_id, id, customer_id)
 VALUES (1, '00000000-0000-3100-0000-000000000001', 'user1@example.com');
 
-INSERT INTO bookings (show_id, id, customer_username)
+INSERT INTO bookings (show_id, id, customer_id)
 VALUES (2, '00000000-0000-3100-0000-000000000002', 'admin@example.com');
 
-INSERT INTO bookings (show_id, id, customer_username)
+INSERT INTO bookings (show_id, id, customer_id)
 VALUES (3, '00000000-0000-3100-0000-000000000005', 'user2@example.com');
 
 INSERT INTO seats (available, seat_nr, seat_row, theater_id, type)
@@ -118,11 +118,11 @@ INSERT INTO seats (available, seat_nr, seat_row, theater_id, type)
 VALUES (1, 3, 3, 1, 2);
 
 INSERT INTO seats (available, seat_nr, seat_row, theater_id, type)
-VALUES (1, 2, 1, 1, 3);
+VALUES (1, 2, 1, 1, 2);
 
 -- Inserting another seat data
 INSERT INTO seats (available,  seat_nr, seat_row, theater_id, type)
-VALUES (1, 1, 2, 1, 1);
+VALUES (1, 1, 2, 1, 0);
 
 -- Inserting a third seat data
 INSERT INTO seats (available, seat_nr, seat_row, theater_id, type)
@@ -139,42 +139,6 @@ VALUES (1, 5, 2, 1, 2);
 INSERT INTO seats (available, seat_nr, seat_row, theater_id, type)
 VALUES (1, 3, 3, 1, 1);
 
-INSERT INTO theaters_seats (theater_id, seats_id)
-VALUES (1, 1);
-
-INSERT INTO theaters_seats (theater_id, seats_id)
-VALUES (1, 2);
-
-INSERT INTO theaters_seats (theater_id, seats_id)
-VALUES (1, 3);
-
-INSERT INTO theaters_seats (theater_id, seats_id)
-VALUES (1, 4);
-
-INSERT INTO theaters_seats (theater_id, seats_id)
-VALUES (1, 5);
-
-INSERT INTO theaters_seats (theater_id, seats_id)
-VALUES (1, 6);
-
-INSERT INTO theaters_seats (theater_id, seats_id)
-VALUES (1, 7);
-
-INSERT INTO theaters_seats (theater_id, seats_id)
-VALUES (1, 8);
-
-INSERT INTO theaters_seats (theater_id, seats_id)
-VALUES (1, 9);
-
-INSERT INTO theaters_shows (theater_id, shows_id)
-VALUES (1, 1);
-
-INSERT INTO theaters_shows (theater_id, shows_id)
-VALUES (2, 2);
-
-INSERT INTO theaters_shows (theater_id, shows_id)
-VALUES (3, 3);
-
 INSERT INTO user_roles (user_username, role_role_name)
 VALUES ('user1@example.com', 'USER');
 
@@ -184,13 +148,13 @@ VALUES ('user2@example.com', 'USER');
 INSERT INTO user_roles (user_username, role_role_name)
 VALUES ('admin@example.com', 'ADMIN');
 
-INSERT INTO bookings_seats (booking_id, seats_id)
+INSERT INTO seats_bookings (bookings_id, seats_id)
 VALUES ('00000000-0000-3100-0000-000000000000', 1);
 
-INSERT INTO bookings_seats (booking_id, seats_id)
+INSERT INTO seats_bookings (bookings_id, seats_id)
 VALUES ('00000000-0000-3100-0000-000000000000', 2);
 
-INSERT INTO bookings_seats (booking_id, seats_id)
+INSERT INTO seats_bookings (bookings_id, seats_id)
 VALUES ('00000000-0000-3100-0000-000000000001', 3);
 
 INSERT INTO user_with_roles_bookings (customer_username, bookings_id)
