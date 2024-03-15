@@ -26,7 +26,6 @@ public class Movie {
     private int ageLimit;
     private int duration;
     @ManyToMany(mappedBy = "movies")
-    @JsonManagedReference
     private List<Category> categories;
     @OneToMany(mappedBy = "movie")
     @JsonManagedReference

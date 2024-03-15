@@ -21,14 +21,12 @@ public class Booking {
     private String id;
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    @JsonBackReference
     private Customer customer;
     @ManyToOne
     @JoinColumn(name = "show_id")
     @JsonBackReference
     private Show show;
     @ManyToMany(mappedBy = "bookings")
-    @JsonBackReference
     private List<Seat> seats;
 
 }

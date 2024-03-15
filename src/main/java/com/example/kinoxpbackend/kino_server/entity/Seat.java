@@ -2,6 +2,7 @@ package com.example.kinoxpbackend.kino_server.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class Seat {
     private boolean available;
     @ManyToOne
     @JoinColumn(name = "theater_id")
-    @JsonBackReference
+    @JsonBackReference(value = "theater-seats")
     private Theater theater;
     public enum seatType {
         REGULAR,
@@ -33,6 +34,6 @@ public class Seat {
     }
     private seatType type;
     @ManyToMany
-    @JsonManagedReference
+    @JsonIgnore
     private List<Booking> bookings;
 }

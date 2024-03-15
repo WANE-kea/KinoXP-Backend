@@ -27,6 +27,6 @@ public class Show {
     private Movie movie;
     @ManyToOne
     @JoinColumn(name = "theater_id")
-    @JsonBackReference
+    @JsonBackReference(value = "theater-shows")
     private Theater theater;
 }

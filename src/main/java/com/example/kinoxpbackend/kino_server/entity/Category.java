@@ -20,6 +20,5 @@ public class Category {
     private String name;
 
     @ManyToMany
-    @JsonBackReference
     private List<Movie> movies;
 }
