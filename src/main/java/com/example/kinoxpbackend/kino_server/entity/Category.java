@@ -1,6 +1,7 @@
 package com.example.kinoxpbackend.kino_server.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,6 @@ public class Category {
     private String name;
 
     @ManyToMany
+    @JsonIgnore
     private List<Movie> movies;
 }
