@@ -102,15 +102,16 @@ VALUES (3, 8);
 
 -- Inserting a user with roles
 INSERT INTO user_with_roles (enabled, created, edited, discriminator_type, email, username, password, country, first_name, last_name, middle_name, phone, street_address, street_no, zip)
-VALUES (1, CURRENT_TIMESTAMP, NULL, 'user', 'user1@example.com', 'user1@example.com', 'password123', 'USA', 'John', 'Doe', NULL, '123-456-7890', '123 Main St', 'Apt 101', '12345');
+VALUES (1, CURRENT_TIMESTAMP, NULL, 'UserWithRoles', 'user1@example.com', 'user1@example.com', '$2a$12$I4ek7KLi9F8E0XVVLHOPYO61Rwhmr8I3Jsuy08XTOamamnLPnbL56', 'USA', 'John', 'Doe', NULL, '123-456-7890', '123 Main St', 'Apt 101', '12345');
 
 -- Inserting another user with roles
 INSERT INTO user_with_roles (enabled, created, edited, discriminator_type, email, username, password, country, first_name, last_name, middle_name, phone, street_address, street_no, zip)
-VALUES (1, CURRENT_TIMESTAMP, NULL, 'admin', 'admin@example.com', 'admin@example.com', 'adminpass', 'Canada', 'Admin', 'User', 'X', '987-654-3210', '456 Oak St', 'Suite 202', '56789');
+VALUES (1, CURRENT_TIMESTAMP, NULL, 'UserWithRoles', 'admin@example.com', 'admin@example.com', '$2a$12$hIrz02Z0qHhf2aXxPtevy.w4cW4aIikys75wYx898arLAR9jmF2DO
+', 'Canada', 'Admin', 'User', 'X', '987-654-3210', '456 Oak St', 'Suite 202', '56789');
 
 -- Inserting a third user with roles
 INSERT INTO user_with_roles (enabled, created, edited, discriminator_type, email, username, password, country, first_name, last_name, middle_name, phone, street_address, street_no, zip)
-VALUES (1, CURRENT_TIMESTAMP, NULL, 'user', 'user2@example.com', 'user2@example.com', 'securepass', 'UK', 'Jane', 'Smith', 'E', '345-678-9012', '789 Elm St', NULL, '67890');
+VALUES (1, CURRENT_TIMESTAMP, NULL, 'UserWithRoles', 'user2@example.com', 'user2@example.com', '$2a$12$uYNfghmblKrCmwlUeIff/eP1TqWW1mXU7abVPvIsRvkGgzMkIjp3e', 'UK', 'Jane', 'Smith', 'E', '345-678-9012', '789 Elm St', NULL, '67890');
 
 -- Inserting show data
 INSERT INTO shows (id, movie_id, theater_id, end_time, start_time)
