@@ -42,7 +42,7 @@ public class BookingController {
     }
   //  @PreAuthorize("hasAnyAuthority('ADMIN')")
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity deleteBooking(@PathVariable int id) {
+    public ResponseEntity deleteBooking(@PathVariable String id) {
         return bookingService.deleteBooking(id);
     }
 }
