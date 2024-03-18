@@ -2,7 +2,9 @@ package com.example.kinoxpbackend.kino_server.service;
 
 import com.example.kinoxpbackend.kino_server.dto.ShowDto;
 import com.example.kinoxpbackend.kino_server.entity.Show;
+import com.example.kinoxpbackend.kino_server.entity.Theater;
 import com.example.kinoxpbackend.kino_server.repository.ShowRepository;
+import com.example.kinoxpbackend.kino_server.repository.TheaterRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,11 @@ import java.util.List;
 public class ShowService {
 
     ShowRepository showRepository;
+    TheaterRepository theaterRepository;
 
     public ShowService(ShowRepository showRepository) {
         this.showRepository = showRepository;
+        this.theaterRepository = theaterRepository;
     }
     public List<ShowDto> getAllShows() {
         List<Show> shows = showRepository.findAll();
@@ -42,7 +46,9 @@ public class ShowService {
         original.setStartTime(s.getStartTime());
         original.setEndTime(s.getEndTime());
         original.setMovie(s.getMovie());
-        original.setTheater(s.getTheater());
+        original.setTheater(theaterRepository.findById(s.getTheater_id()).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Theater not found")));
+        original.setBookings(s.getBookings());
     }
 
     public ShowDto editShow(ShowDto request, int id) {

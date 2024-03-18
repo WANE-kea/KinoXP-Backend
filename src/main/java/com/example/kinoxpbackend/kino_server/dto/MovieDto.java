@@ -16,12 +16,23 @@ import java.util.List;
 public class MovieDto {
     private Integer id;
     private String title;
+    private String description;
+    private String posterBase64;
+    private String posterUrl;
+    private String trailerUrl;
+    private int ageLimit;
+    private int duration;
     private List<Category> categories;
 
     public MovieDto(Movie c) {
         this.id = c.getId();
         this.title = c.getTitle();
         this.categories = c.getCategories();
-
+        this.description = c.getDescription();
+        this.posterBase64 = c.getPosterBase64();
+        this.posterUrl = c.getPosterUrl();
+        this.trailerUrl = c.getTrailerUrl();
+        this.ageLimit = c.getAgeLimit();
+        this.duration = c.getDuration();
     }
 }
