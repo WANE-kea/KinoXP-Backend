@@ -23,10 +23,10 @@ public class Theater {
     private String name;
 
     @OneToMany(mappedBy = "theater")
-    @JsonManagedReference
+    @JsonManagedReference(value = "theater-seats")
     private List<Seat> seats;
 
     @OneToMany(mappedBy = "theater")
-    @JsonManagedReference
+    @JsonManagedReference(value = "theater-shows")
     private List<Show> shows;
 }

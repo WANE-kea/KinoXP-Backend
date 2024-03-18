@@ -1,10 +1,13 @@
 package com.example.kinoxpbackend.kino_server.dto;
 
+import com.example.kinoxpbackend.kino_server.entity.Category;
 import com.example.kinoxpbackend.kino_server.entity.Movie;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -13,10 +16,23 @@ import lombok.Setter;
 public class MovieDto {
     private Integer id;
     private String title;
+    private String description;
+    private String posterBase64;
+    private String posterUrl;
+    private String trailerUrl;
+    private int ageLimit;
+    private int duration;
+    private List<Category> categories;
 
     public MovieDto(Movie c) {
         this.id = c.getId();
         this.title = c.getTitle();
-
+        this.categories = c.getCategories();
+        this.description = c.getDescription();
+        this.posterBase64 = c.getPosterBase64();
+        this.posterUrl = c.getPosterUrl();
+        this.trailerUrl = c.getTrailerUrl();
+        this.ageLimit = c.getAgeLimit();
+        this.duration = c.getDuration();
     }
 }

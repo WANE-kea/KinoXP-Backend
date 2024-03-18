@@ -76,7 +76,7 @@ public class BookingService {
         return new BookingDto(bookingToEdit);
     }
 
-    public ResponseEntity deleteBooking(int id) {
+    public ResponseEntity deleteBooking(String id) {
         Booking booking = bookingRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found"));
         bookingRepository.delete(booking);
         return new ResponseEntity(HttpStatus.NO_CONTENT);

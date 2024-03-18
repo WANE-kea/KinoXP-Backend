@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,14 +17,16 @@ public class ShowDto{
     private Date startTime;
     private Date endTime;
     private Movie movie;
-    private Theater theater;
+    private int theater_id;
+    private List<Booking> bookings;
 
     public ShowDto(Show s) {
         this.id = s.getId();
         this.startTime = s.getStartTime();
         this.endTime = s.getEndTime();
         this.movie = s.getMovie();
-        this.theater = s.getTheater();
+        this.theater_id = s.getTheater().getId();
+        this.bookings = s.getBookings();
 
     }
 }

@@ -1,6 +1,7 @@
 package com.example.kinoxpbackend.kino_server.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -20,15 +21,16 @@ public class Movie {
     private int id;
     private String title;
     private String description;
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String posterBase64;
     private String posterUrl;
     private String trailerUrl;
     private int ageLimit;
     private int duration;
     @ManyToMany(mappedBy = "movies")
-    @JsonManagedReference
     private List<Category> categories;
     @OneToMany(mappedBy = "movie")
     @JsonManagedReference
+    @JsonIgnore
     private List<Show> shows;
 }
