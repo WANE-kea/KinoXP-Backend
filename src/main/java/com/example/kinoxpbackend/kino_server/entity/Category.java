@@ -18,9 +18,14 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String name;
 
     @ManyToMany
     @JsonIgnore
     private List<Movie> movies;
+
+    public Category(String name) {
+        this.name = name;
+    }
 }

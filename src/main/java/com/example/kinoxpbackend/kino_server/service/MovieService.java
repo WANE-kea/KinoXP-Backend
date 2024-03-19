@@ -1,7 +1,9 @@
 package com.example.kinoxpbackend.kino_server.service;
 
 import com.example.kinoxpbackend.kino_server.dto.MovieDto;
+import com.example.kinoxpbackend.kino_server.entity.Category;
 import com.example.kinoxpbackend.kino_server.entity.Movie;
+import com.example.kinoxpbackend.kino_server.repository.CategoryRepository;
 import com.example.kinoxpbackend.kino_server.repository.MovieRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +16,11 @@ import java.util.List;
 public class MovieService {
 
     MovieRepository movieRepository;
+    CategoryRepository categoryRepository;
 
-    public MovieService(MovieRepository movieRepository) {
+    public MovieService(MovieRepository movieRepository, CategoryRepository categoryRepository) {
         this.movieRepository = movieRepository;
+        this.categoryRepository = categoryRepository;
     }
     public List<MovieDto> getAllMovies() {
         List<Movie> movies = movieRepository.findAll();
@@ -41,6 +45,13 @@ public class MovieService {
 
     private void updateMovie(Movie original, MovieDto movie) {
         original.setTitle(movie.getTitle());
+        original.setCategories(categoryRepository.findByNameIn(movie.getCategories()));
+        original.setDescription(movie.getDescription());
+        original.setPosterBase64(movie.getPosterBase64());
+        original.setPosterUrl(movie.getPosterUrl());
+        original.setTrailerUrl(movie.getTrailerUrl());
+        original.setAgeLimit(movie.getAgeLimit());
+        original.setDuration(movie.getDuration());
     }
 
     public MovieDto editMovie(MovieDto request, int id) {
