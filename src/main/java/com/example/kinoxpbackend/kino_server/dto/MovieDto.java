@@ -22,12 +22,12 @@ public class MovieDto {
     private String trailerUrl;
     private int ageLimit;
     private int duration;
-    private List<Category> categories;
+    private List<String> categories;
 
     public MovieDto(Movie c) {
         this.id = c.getId();
         this.title = c.getTitle();
-        this.categories = c.getCategories();
+        this.categories = c.getCategories().stream().map(Category::getName).toList();
         this.description = c.getDescription();
         this.posterBase64 = c.getPosterBase64();
         this.posterUrl = c.getPosterUrl();
