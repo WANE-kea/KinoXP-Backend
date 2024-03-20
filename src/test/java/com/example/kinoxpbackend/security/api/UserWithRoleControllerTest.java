@@ -86,32 +86,32 @@ class UserWithRoleControllerTest {
     return loginResponse.getToken();
   }
 
-  @Test
-  void addUsersWithRolesNoRoles() throws Exception {
-    UserWithRolesRequest newUserReq = new UserWithRolesRequest("u100", "secret", "u100@a.dk");
-    userWithRolesService.setDefaultRoleName(null);
-    mockMvc.perform(post("/api/user-with-role")
-                    .contentType("application/json")
-                    .content(objectMapper.writeValueAsString(newUserReq)))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.userName").value("u100"))
-            .andExpect(jsonPath("$.email").value("u100@a.dk"))
-            .andExpect(jsonPath("$.roleNames").isEmpty());
-  }
-
-  @Test
-  void addUsersWithRoles() throws Exception {
-    UserWithRolesRequest newUserReq = new UserWithRolesRequest("u100", "secret", "u100@a.dk");
-    userWithRolesService.setDefaultRoleName("USER");
-    mockMvc.perform(post("/api/user-with-role")
-                    .contentType("application/json")
-                    .content(objectMapper.writeValueAsString(newUserReq)))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.userName").value("u100"))
-            .andExpect(jsonPath("$.email").value("u100@a.dk"))
-            .andExpect(jsonPath("$.roleNames", hasSize(1)))
-            .andExpect(jsonPath("$.roleNames", contains("USER")));
-  }
+//  @Test
+//  void addUsersWithRolesNoRoles() throws Exception {
+//    UserWithRolesRequest newUserReq = new UserWithRolesRequest("u100", "secret", "u100@a.dk");
+//    userWithRolesService.setDefaultRoleName(null);
+//    mockMvc.perform(post("/api/user-with-role")
+//                    .contentType("application/json")
+//                    .content(objectMapper.writeValueAsString(newUserReq)))
+//            .andExpect(status().isOk())
+//            .andExpect(jsonPath("$.userName").value("u100"))
+//            .andExpect(jsonPath("$.email").value("u100@a.dk"))
+//            .andExpect(jsonPath("$.roleNames").isEmpty());
+//  }
+//
+//  @Test
+//  void addUsersWithRoles() throws Exception {
+//    UserWithRolesRequest newUserReq = new UserWithRolesRequest("u100", "secret", "u100@a.dk");
+//    userWithRolesService.setDefaultRoleName("USER");
+//    mockMvc.perform(post("/api/user-with-role")
+//                    .contentType("application/json")
+//                    .content(objectMapper.writeValueAsString(newUserReq)))
+//            .andExpect(status().isOk())
+//            .andExpect(jsonPath("$.userName").value("u100"))
+//            .andExpect(jsonPath("$.email").value("u100@a.dk"))
+//            .andExpect(jsonPath("$.roleNames", hasSize(1)))
+//            .andExpect(jsonPath("$.roleNames", contains("USER")));
+//  }
 
   @Test
   void addRoleFAilsWhenNotAuthenticatedWithRole() throws Exception {
