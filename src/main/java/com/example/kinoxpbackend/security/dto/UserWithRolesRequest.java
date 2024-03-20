@@ -13,4 +13,12 @@ public class UserWithRolesRequest {
     String password;
     @NonNull
     String email;
+    String firstName;
+    String middleName;
+    String lastName;
+    String streetAddress;
+    String streetNo;
+    String zip;
+    String country;
+    String phone;
 }
