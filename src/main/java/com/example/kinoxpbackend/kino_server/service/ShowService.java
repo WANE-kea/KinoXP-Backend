@@ -17,7 +17,7 @@ public class ShowService {
     ShowRepository showRepository;
     TheaterRepository theaterRepository;
 
-    public ShowService(ShowRepository showRepository) {
+    public ShowService(ShowRepository showRepository, TheaterRepository theaterRepository) {
         this.showRepository = showRepository;
         this.theaterRepository = theaterRepository;
     }
@@ -33,8 +33,8 @@ public class ShowService {
     }
 
     public ShowDto addShow(ShowDto request) {
-        if (request.getId() == 0) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Show id is required");
+        if (request.getId() != 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You can't create a show with an ID!");
         }
         Show newShow = new Show();
         updateShow(newShow, request);

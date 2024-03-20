@@ -13,4 +13,6 @@ public class UserWithRolesRequest {
     String password;
     @NonNull
     String email;
+
+    //TODO: expand to hold all the fields of customer as well
 }
