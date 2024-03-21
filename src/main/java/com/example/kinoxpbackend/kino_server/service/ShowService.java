@@ -3,6 +3,7 @@ package com.example.kinoxpbackend.kino_server.service;
 import com.example.kinoxpbackend.kino_server.dto.ShowDto;
 import com.example.kinoxpbackend.kino_server.entity.Show;
 import com.example.kinoxpbackend.kino_server.entity.Theater;
+import com.example.kinoxpbackend.kino_server.repository.MovieRepository;
 import com.example.kinoxpbackend.kino_server.repository.ShowRepository;
 import com.example.kinoxpbackend.kino_server.repository.TheaterRepository;
 import org.springframework.http.HttpStatus;
@@ -16,10 +17,12 @@ public class ShowService {
 
     ShowRepository showRepository;
     TheaterRepository theaterRepository;
+    MovieRepository movieRepository;
 
-    public ShowService(ShowRepository showRepository) {
+    public ShowService(ShowRepository showRepository, TheaterRepository theaterRepository, MovieRepository movieRepository) {
         this.showRepository = showRepository;
         this.theaterRepository = theaterRepository;
+        this.movieRepository = movieRepository;
     }
     public List<ShowDto> getAllShows() {
         List<Show> shows = showRepository.findAll();
@@ -33,8 +36,8 @@ public class ShowService {
     }
 
     public ShowDto addShow(ShowDto request) {
-        if (request.getId() == 0) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Show id is required");
+        if (request.getId() != 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You can't create a show with an ID!");
         }
         Show newShow = new Show();
         updateShow(newShow, request);
@@ -45,7 +48,8 @@ public class ShowService {
     private void updateShow(Show original, ShowDto s) {
         original.setStartTime(s.getStartTime());
         original.setEndTime(s.getEndTime());
-        original.setMovie(s.getMovie());
+        original.setMovie(movieRepository.findById(s.getMovie().getId()).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found")));
         original.setTheater(theaterRepository.findById(s.getTheater_id()).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Theater not found")));
         original.setBookings(s.getBookings());
