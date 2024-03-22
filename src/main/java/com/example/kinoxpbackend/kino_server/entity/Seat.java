@@ -1,7 +1,9 @@
 package com.example.kinoxpbackend.kino_server.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,19 +15,25 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "categories")
-public class Category {
+@Table(name = "seats")
+public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(unique = true)
-    private String name;
-
+    private int seatRow;
+    private int seatNr;
+    private boolean available;
+    @ManyToOne
+    @JoinColumn(name = "theater_id")
+    @JsonBackReference(value = "theater-seats")
+    private Theater theater;
+    public enum seatType {
+        REGULAR,
+        VIP,
+        HANDICAP
+    }
+    private seatType type;
     @ManyToMany
     @JsonIgnore
-    private List<Movie> movies;
-
-    public Category(String name) {
-        this.name = name;
-    }
+    private List<Booking> bookings;
 }
