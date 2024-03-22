@@ -1,4 +1,4 @@
-use kinodb;
+use KinoDatabase;
 
 INSERT INTO role(role_name)
 VALUES ('ADMIN');

@@ -5,6 +5,7 @@ import com.example.kinoxpbackend.kino_server.entity.Booking;
 import com.example.kinoxpbackend.kino_server.entity.Seat;
 import com.example.kinoxpbackend.kino_server.repository.BookingRepository;
 import com.example.kinoxpbackend.kino_server.repository.SeatRepository;
+import com.example.kinoxpbackend.security.repository.CustomerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,12 @@ public class BookingService {
 
     final BookingRepository bookingRepository;
     final SeatRepository seatRepository;
+    final CustomerRepository customerRepository;
 
-    public BookingService(BookingRepository bookingRepository, SeatRepository seatRepository) {
+    public BookingService(BookingRepository bookingRepository, SeatRepository seatRepository, CustomerRepository customerRepository) {
         this.bookingRepository = bookingRepository;
         this.seatRepository = seatRepository;
+        this.customerRepository = customerRepository;
     }
 
     public List<BookingDto> getAllBookings() {
@@ -54,7 +57,8 @@ public class BookingService {
     }
 
     private void updateBooking(Booking original, BookingDto b) {
-        original.setCustomer(b.getCustomer());
+        original.setCustomer(customerRepository.findByUsername(b.getCustomer().getUsername()).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found")));
         original.setShow(b.getShow());
         original.setSeats(b.getSeats());
     }
